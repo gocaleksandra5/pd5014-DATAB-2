@@ -49,7 +49,7 @@
 
 **Query #1**
 
-    SELECT p.name, t.result, t.test_date 
+    SELECT p.name, t.result, t.test_date
     FROM patients p
     INNER JOIN tests t ON p.patient_id = t.patient_id
     WHERE t.test_name = 'Blood Sugar'
@@ -68,6 +68,7 @@
 ---
 **Query #2**
 
+    
     
     
     
@@ -91,8 +92,7 @@
     	AND t.result = (
     		SELECT MAX(result)
     		FROM tests
-    		WHERE test_name = 'Cholesterol'
-    	);
+    		WHERE test_name = 'Cholesterol');
 
 | name        | test_date  |
 | ----------- | ---------- |
@@ -130,28 +130,27 @@
     	WHEN t.test_name = 'Blood Sugar' AND t.result >= 100 THEN 'Wysoki'
     	WHEN t.test_name = 'Cholesterol' AND t.result < 200 THEN 'Normalny'
     	WHEN t.test_name = 'Cholesterol' AND t.result >= 200 THEN 'Wysoki'
-    	ELSE 'Brak normy'
     END AS status
     FROM patients p
     INNER JOIN tests t ON p.patient_id = t.patient_id;
 
-| name         | test_name   | status     |
-| ------------ | ----------- | ---------- |
-| John Doe     | Blood Sugar | Normalny   |
-| John Doe     | Cholesterol | Wysoki     |
-| John Doe     | Vitamin D   | Brak normy |
-| Jane Smith   | Blood Sugar | Normalny   |
-| Jane Smith   | Cholesterol | Normalny   |
-| Alice Brown  | Cholesterol | Normalny   |
-| Alice Brown  | Vitamin D   | Brak normy |
-| Bob Johnson  | Blood Sugar | Wysoki     |
-| Emma Wilson  | Cholesterol | Wysoki     |
-| Emma Wilson  | Blood Sugar | Normalny   |
-| Emma Wilson  | Blood Sugar | Wysoki     |
-| Chris Taylor | Cholesterol | Normalny   |
-| Chris Taylor | Blood Sugar | Wysoki     |
-| Sophia Davis | Blood Sugar | Normalny   |
-| Sophia Davis | Cholesterol | Normalny   |
+| name         | test_name   | status   |
+| ------------ | ----------- | -------- |
+| John Doe     | Blood Sugar | Normalny |
+| John Doe     | Cholesterol | Wysoki   |
+| John Doe     | Vitamin D   |          |
+| Jane Smith   | Blood Sugar | Normalny |
+| Jane Smith   | Cholesterol | Normalny |
+| Alice Brown  | Cholesterol | Normalny |
+| Alice Brown  | Vitamin D   |          |
+| Bob Johnson  | Blood Sugar | Wysoki   |
+| Emma Wilson  | Cholesterol | Wysoki   |
+| Emma Wilson  | Blood Sugar | Normalny |
+| Emma Wilson  | Blood Sugar | Wysoki   |
+| Chris Taylor | Cholesterol | Normalny |
+| Chris Taylor | Blood Sugar | Wysoki   |
+| Sophia Davis | Blood Sugar | Normalny |
+| Sophia Davis | Cholesterol | Normalny |
 
 ---
 **Query #6**
